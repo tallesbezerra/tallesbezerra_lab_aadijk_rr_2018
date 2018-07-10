@@ -1,20 +1,32 @@
-﻿1. Uma descrição do funcionamento do algoritmo de Dijkstra, bem como, uma
-descrição/explicação sobre a sua complexidade de tempo;
+﻿1. Uma descrição do funcionamento do algoritmo de Dijkstra, bem como, uma descrição/explicação sobre a sua complexidade de tempo;
+Escolhido um vértice como raiz da busca, este algoritmo calcula o custo mínimo deste vértice para todos os demais vértices vértices do grafo. O algoritmo pode ser usado sobre grafos orientados, ou não, e admite que todas as arestas possuem pesos não negativos. Este algoritmo parte de uma estimativa inicial para o custo mínimo e vai sucessivamente ajustando esta estimativa. Ele considera que um vértice estará fechado quando já tiver sido obtido um caminho de custo mínimo do vértice tomado como raiz da busca até ele. Caso contrário ele dito estar aberto.
 
-2. Escreva um programa em C/C++ implementando o algoritmo de Dijkstra. O progra-
-ma deve receber como entrada um arquivo de texto contendo um grafo;
+• Seja G(V,A) um grafo orientado e s um vértice de G:
+• Atribua valor zero à estimativa do custo mínimo do vértice s (a raiz
+da busca) e infinito às demais estimativas;
+• Atribua um valor qualquer aos precedentes (o precedente de um
+vértice t é o vértice que precede t no caminho de custo mínimo
+de s para t);
+• Enquanto houver vértice aberto:
+	– seja k um vértice ainda aberto cuja estimativa seja a menor 		dentre todos os vértices abertos;
+	– feche o vértice k;
+	– Para todo vértice j ainda aberto que seja sucessor de k faça:
+		• some a estimativa do vértice k com o custo do arco 			que une k a j;
+		• caso esta soma seja melhor que a estimativa anterior 			para o vértice j, substitua-a e anote k como 			precedente de j.
+
+Fonte: http://www.inf.ufsc.br/grafos/temas/custo-minimo/dijkstra.html
+
+2. Escreva um programa em C/C++ implementando o algoritmo de Dijkstra. O programa deve receber como entrada um arquivo de texto contendo um grafo;
 Os códigos grafo.c, grafo.h e grafo.txt devem estar na mesma pasta
 compilar: gcc grafo.c -o grafo
 executar: ./grafo
 
-3. Execute o algoritmo de Dijkstra sobre o grafo do exemplo apresentado no slide da aula
-(página 6) usando como raiz o vértice B, A e D;
+3. Execute o algoritmo de Dijkstra sobre o grafo do exemplo apresentado no slide da aula (página 6) usando como raiz o vértice B, A e D;
 Os códigos grafo.c, grafo.h e grafo.txt devem estar na mesma pasta
 compilar: gcc grafo.c -o grafo
 executar: ./grafo
 
-4. Forneça um exemplo simples de um grafo com 3 nós, com aresta(s) negativa(s) para o
-qual o algoritmo de Dijkstra gere uma resposta incorreta.
+4. Forneça um exemplo simples de um grafo com 3 nós, com aresta(s) negativa(s) para o qual o algoritmo de Dijkstra gere uma resposta incorreta.
 Como a distância do vértice inicial é inicializada com 0, e dos demais com -1, o algoritmo apenas calcula a distância correta dos vértices que estão conectados com o vértice inicial, pois a função  menorDistancia() compara valores maiores ou iguais a zero, e a variável menor continua com -1, que não pode ser usada com o índice de um vetor. 
 os códigos grafo_negativo.c, grafo.h e grafo_negativo.txt devem estar na mesma pasta
 compilar: gcc grafo_negativo.c -o grafo_n
